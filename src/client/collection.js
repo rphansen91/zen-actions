@@ -8,7 +8,7 @@ example.directive('collection', function () {
 				"<div class='row col-sm-4 col-sm-offset-4 text-center'>" +
 
 					"<div icon-button='items.newItem()' size='lg' type='primary' icon='plus'></div>" +
-					"<div icon-button='items.toggle()' size='lg' icon='eye-open'></div>" +
+					"<div icon-button='items.toggleVisibility()' size='lg' icon='eye-open'></div>" +
 					
 				"</div>" +
 				
@@ -23,8 +23,8 @@ example.directive('collection', function () {
 
 						"<br><br>" +
 
-						"<div icon-button='item.toggle()' size='lg' type='primary' icon='eye-open'></div>" +
-						"<div icon-button='items.remove($index)' size='lg' type='danger' icon='remove'></div>" +
+						"<div icon-button='item.toggleVisibility()' size='lg' type='primary' icon='eye-open'></div>" +
+						"<div icon-button='items.removeItemFromCollection($index)' size='lg' type='danger' icon='remove'></div>" +
 						
 					"</div>" +
 				"</div>" +
@@ -33,7 +33,7 @@ example.directive('collection', function () {
 		link: function (scope, element, attrs, collectionCtrl) {
 			// Subscribe to navbar events
 			scope.$on("add-new-item", function () { collectionCtrl.newItem() })
-			scope.$on("toggle-items-visibility", function () { collectionCtrl.toggle() })
+			scope.$on("toggle-items-visibility", function () { collectionCtrl.toggleVisibility() })
 
 			// Build starting collection
 			for (var i = 0; i < 6; i++) {
@@ -47,9 +47,9 @@ example.directive('collection', function () {
 			
 			items.newItem = function () {
 				var item = ngZenActions.getActions(["SET_GET_ACTIONS", "VISIBILITY_ACTIONS", "EVENT_GET_ACTIONS"])
-				item.set("name", items.collection.length)
+				item.setProperty("name", items.collection.length)
 
-				items.add(item)
+				items.addItemToCollection(item)
 			}
 
 			items.setItemName = function (item, event) {

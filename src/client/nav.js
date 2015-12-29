@@ -25,8 +25,8 @@ example.directive('navbar', function ($rootScope, ngZenActions) {
 			}
 
 			scope.addMoreButton = ngZenActions.getActions(["SET_GET_ACTIONS"])
-			scope.addMoreButton.set("newItem", newItem)
-			scope.addMoreButton.set("toggleItems", toggleItems)
+			scope.addMoreButton.setProperty("newItem", newItem)
+			scope.addMoreButton.setProperty("toggleItems", toggleItems)
 		}
 	}
 })
